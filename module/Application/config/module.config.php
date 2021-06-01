@@ -10,8 +10,22 @@ namespace Application;
 use Zend\Router\Http\Literal;
 use Zend\Router\Http\Segment;
 use Zend\ServiceManager\Factory\InvokableFactory;
+use Doctrine\DBAL\Driver\PDOMySql\Driver as PDOMySqlDriver;
 
 return [
+    'doctrine' => [
+        'connection' => [
+            'orm_default' => [
+                'driverClass' => PDOMySqlDriver::class,
+                'params' => [
+                    'host'     => '127.0.0.1',                    
+                    'user'     => 'books',
+                    'password' => '123456',
+                    'dbname'   => 'booksShop',
+                ]
+            ],            
+        ],        
+    ],
     'router' => [
         'routes' => [
             'home' => [
