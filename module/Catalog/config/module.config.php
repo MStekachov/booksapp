@@ -31,7 +31,7 @@ return [
             'catalog' => [
                 'type'    => Literal::class,
                 'options' => [
-                    'route'    => '/',
+                    'route'    => '/catalog',
                     'defaults' => [
                         'controller' => Controller\CatalogController::class,
                         'action'     => 'index',
@@ -42,7 +42,7 @@ return [
     ],
     'controllers' => [
         'factories' => [
-            Controller\CatalogController::class => InvokableFactory::class,
+            Controller\CatalogController::class => рInvokableFactory::class,
         ],
     ],
     'view_manager' => [
@@ -53,7 +53,7 @@ return [
         'exception_template'       => 'error/index',
         'template_map' => [
             'layout/layout'           => __DIR__ . '/../view/layout/layout.phtml',
-            'application/index/index' => __DIR__ . '/../view/application/index/index.phtml',
+            'application/index/index' => __DIR__ . '/../view/catalog/index/index.phtml',
             'error/404'               => __DIR__ . '/../view/error/404.phtml',
             'error/index'             => __DIR__ . '/../view/error/index.phtml',
         ],
