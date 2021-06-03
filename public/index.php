@@ -3,6 +3,8 @@
 use Zend\Mvc\Application;
 use Zend\Stdlib\ArrayUtils;
 
+error_reporting(E_ALL|E_STRICT);
+ini_set('display_errors', 'on');
 /**
  * This makes our life easier when dealing with paths. Everything is relative
  * to the application root now.
