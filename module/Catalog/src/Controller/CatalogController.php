@@ -12,7 +12,7 @@ use Zend\View\Model\ViewModel;
 
 class CatalogController extends AbstractActionController
 {
-    public function indexAction()
+    public function catalogAction()
     {
         return new ViewModel();
     }

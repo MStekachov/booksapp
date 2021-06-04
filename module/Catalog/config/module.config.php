@@ -4,7 +4,6 @@
  * @copyright Copyright (c) 2005-2016 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
-
 namespace Catalog;
 
 use Zend\Router\Http\Literal;
@@ -34,7 +33,7 @@ return [
                     'route'    => '/catalog',
                     'defaults' => [
                         'controller' => Controller\CatalogController::class,
-                        'action'     => 'index',
+                        'action'     => 'catalog',
                     ],
                 ],
             ],
@@ -53,7 +52,7 @@ return [
         'exception_template'       => 'error/index',
         'template_map' => [
             'layout/layout'           => __DIR__ . '/../view/layout/layout.phtml',
-            'application/index/index' => __DIR__ . '/../view/catalog/index/index.phtml',
+            'application/index/index' => __DIR__ . '/../view/catalog/index/catalog.phtml',
             'error/404'               => __DIR__ . '/../view/error/404.phtml',
             'error/index'             => __DIR__ . '/../view/error/index.phtml',
         ],
