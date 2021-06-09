@@ -19,7 +19,7 @@ return [
                 'driverClass' => PDOMySqlDriver::class,
                 'params' => [
                     'host'     => '127.0.0.1',                    
-                    'user'     => 'books',
+                    'user'     => 'book',
                     'password' => '123456',
                     'dbname'   => 'booksShop',
                 ]
@@ -44,7 +44,7 @@ return [
                     'route'    => '/application[/:action]',
                     'defaults' => [
                         'controller' => Controller\IndexController::class,
-                        'action'     => 'index',
+                        'action'     => 'catalog',
                     ],
                 ],
             ],

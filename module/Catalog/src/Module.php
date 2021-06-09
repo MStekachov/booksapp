@@ -7,7 +7,9 @@
 
 namespace Catalog;
 
-class Module
+use Zend\ModuleManager\Feature\ConfigProviderInterface;
+
+class Module implements ConfigProviderInterface
 {
     const VERSION = '3.1.4dev';
 

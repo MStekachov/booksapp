@@ -9,13 +9,16 @@ namespace Catalog\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
+use Doctrine\ORM;
 
 class CatalogController extends AbstractActionController
 {
-    public function catalogAction()
+    public function indexAction()
     {
-        $entityManager = $container->get('doctrine.entitymanager.orm_default');
-        Zend\Debug\Debug::dump($entityManager, $label = null, $echo = true);
+        $var = [12, 14];
+        \Zend\Debug\Debug::dump($var, $label = null, $echo = true);
+        /*$entityManager = $container->get('doctrine.entitymanager.orm_default');
+        Zend\Debug\Debug::dump($entityManager, $label = null, $echo = true);*/
         return new ViewModel();
     }
 }
