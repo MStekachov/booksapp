@@ -1,16 +1,36 @@
 <?php
 /**
- * Global Configuration Override
+ * Local Configuration Override for DEVELOPMENT MODE.
  *
- * You can use this file for overriding configuration values from modules, etc.
- * You would place values in here that are agnostic to the environment and not
- * sensitive to security.
+ * This configuration override file is for providing configuration to use while
+ * in development mode. Run:
  *
- * @NOTE: In practice, this file will typically be INCLUDED in your source
- * control, so do not include passwords or other sensitive information in this
- * file.
+ * <code>
+ * $ composer development-enable
+ * </code>
+ *
+ * from the project root to copy this file to development.local.php and enable
+ * the settings it contains.
+ *
+ * You may also create files matching the glob pattern `{,*.}{global,local}-development.php`.
  */
+use Doctrine\DBAL\Driver\PDOMySql\Driver as MySqlDriver;
 
 return [
-    // ...
+    'doctrine' => [
+        'connection' => [
+            'orm_default' => [
+                'driverClass' => PDOMySqlDriver::class,
+                'params' => [
+                    'host'     => '127.0.0.1',                    
+                    'user'     => 'mistek',
+                    'password' => '123456',
+                    'dbname'   => 'books',
+                ]
+            ],            
+        ],        
+    ],
+    'view_manager' => [
+        'display_exceptions' => true,
+    ],
 ];
