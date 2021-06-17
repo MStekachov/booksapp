@@ -38,13 +38,23 @@ return [
                     ],
                 ],
             ],
+            'catalog' => [
+                'type'    => Segment::class,
+                'options' => [
+                    'route'    => '/catalog',
+                    'defaults' => [
+                        'controller' => Controller\IndexController::class,
+                        'action'     => 'catalog',
+                    ],
+                ],
+            ],
             'application' => [
                 'type'    => Segment::class,
                 'options' => [
                     'route'    => '/application[/:action]',
                     'defaults' => [
                         'controller' => Controller\IndexController::class,
-                        'action'     => 'catalog',
+                        'action'     => '',
                     ],
                 ],
             ],
