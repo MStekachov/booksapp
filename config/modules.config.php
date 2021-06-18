@@ -16,5 +16,6 @@ return [
     'DoctrineModule',
     'DoctrineORMModule',
     'Application',
-    'ZfcTwig'
+    'ZfcTwig',
+    'Catalog'
 ];
