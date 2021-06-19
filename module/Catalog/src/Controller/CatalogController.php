@@ -19,6 +19,7 @@ class CatalogController extends AbstractActionController
         \Zend\Debug\Debug::dump($var, $label = null, $echo = true);
         /*$entityManager = $container->get('doctrine.entitymanager.orm_default');
         Zend\Debug\Debug::dump($entityManager, $label = null, $echo = true);*/
+        $this->layout()->setTemplate('layout/layout2');
         return new ViewModel();
     }
 }

@@ -9,7 +9,7 @@ namespace Catalog;
 use Zend\Router\Http\Literal;
 use Zend\Router\Http\Segment;
 use Zend\ServiceManager\Factory\InvokableFactory;
-use Doctrine\DBAL\Driver\PDOMySql\Driver as PDOMySqlDriver;
+use Doctrine\DBAL\Driver\PDOMySql\Driver;// as PDOMySqlDriver;
 use Doctrine\ORM\Mapping\Driver\AnnotationDriver;
 
 return [
@@ -28,7 +28,7 @@ return [
         ],
         'connection' => [
             'orm_default' => [
-                'driverClass' => PDOMySqlDriver::class,
+                'driverClass' => Driver::class,
                 'params' => [
                     'host'     => '127.0.0.1',                    
                     'user'     => 'books',
@@ -43,7 +43,7 @@ return [
             'catalog' => [
                 'type'    => Literal::class,
                 'options' => [
-                    'route'    => 'application/catalog',
+                    'route'    => '/catalog',
                     'defaults' => [
                         'controller' => Controller\CatalogController::class,
                         'action'     => 'index',
@@ -54,7 +54,9 @@ return [
     ],
     'controllers' => [
         'factories' => [
-            Controller\CatalogController::class => InvokableFactory::class,
+            Controller\CatalogController::class => function($container){
+                return new Controller\CatalogController($container);
+            },
         ],
     ],
     'view_manager' => [
@@ -64,10 +66,10 @@ return [
         'not_found_template'       => 'error/404',
         'exception_template'       => 'error/index',
         'template_map' => [
-            'layout/layout'           => __DIR__ . '/../view/layout/layout.phtml',
-            'catalog/index/index'     => __DIR__ . '/../view/catalog/index/index.phtml',
-            'error/404'               => __DIR__ . '/../view/error/404.phtml',
-            'error/index'             => __DIR__ . '/../view/error/index.phtml',
+            //'layout/layout'        => __DIR__ . '/../view/layout/layout.phtml',
+            'catalog/index'        => __DIR__ . '/../view/catalog/index.twig',
+            'error/404'            => __DIR__ . '/../view/error/404.phtml',
+            'error/index'          => __DIR__ . '/../view/error/index.phtml',
         ],
         'template_path_stack' => [
             __DIR__ . '/../view',

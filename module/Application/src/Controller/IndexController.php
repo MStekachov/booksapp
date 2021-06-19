@@ -7,6 +7,7 @@
  */
 namespace Application\Controller;
 
+use Application\Entity\Book;
 use Application\Entity\Repository\DoctrineQueryRepository;
 use Doctrine\ORM\Mapping\ClassMetadata;
 use Zend\Mvc\Controller\AbstractActionController;
@@ -15,32 +16,35 @@ use Zend\View\Model\ViewModel;
 class IndexController extends AbstractActionController
 {
 
-    private $entityManager;
-    private $doctrineRepository;
+    protected $container;
 
-    public function __construct(/*$entityManager*/)
+    public function __construct($container = null)
     {
-        echo "Жопа!";
-        /*$this->entityManager = $entityManager;
-
-        if ($this->doctrineRepository==null){
-            $this->doctrineRepository = new DoctrineQueryRepository($this->entityManager, new ClassMetadata('Application\Entity\Book'));
-        }*/
+        $this->container = $container;
     }
 
     public function indexAction()
-    {
-        return new ViewModel();
+    { 
+        //$em=$this->container->get('Doctrine\ORM\EntityManager');
+        //\Zend\Debug\Debug::dump($this->container, $label = null, $echo = true);
+        //$books=$em->getRepository(Book::class)->findAll();
+        //$this->layout()->setTemplate('layout/layout2');
+        //\Zend\Debug\Debug::dump($books, $label = null, $echo = true);
+        //return new ViewModel(['book'=>$books]);
+        //return new ViewModel();
+        $em=$this->container->get('Doctrine\ORM\EntityManager');
+        $books=$em->getRepository(Book::class)->findAll();
+        return new ViewModel(['books'=>$books]);
+
     }
 
     public function catalogAction()
     {
-        $id = (int)$this->params()->fromRoute('id', 1);
-        echo "<br />{$id}";
-        /*$oneBook = $this->doctrineRepository->getOneBook($id);
-        $viewModel = new TwigModel(['book'=>$oneBook[0]]);
-        $viewModel->setTemplate('catalog');*/
-        
-        return new ViewModel();
+        echo "dfdsf";
+        $em=$this->container->get('Doctrine\ORM\EntityManager');
+        $books=$em->getRepository(Book::class)->findAll();
+        $this->layout()->setTemplate('layout/layout2');
+        \Zend\Debug\Debug::dump($books, $label = null, $echo = true);
+        return new ViewModel(['book'=>$books]);
     }
 }

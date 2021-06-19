@@ -14,7 +14,7 @@
  *
  * You may also create files matching the glob pattern `{,*.}{global,local}-development.php`.
  */
-use Doctrine\DBAL\Driver\PDOMySql\Driver as MySqlDriver;
+use Doctrine\DBAL\Driver\PDOMySql\Driver as PDOMySqlDriver;
 
 return [
     'doctrine' => [
