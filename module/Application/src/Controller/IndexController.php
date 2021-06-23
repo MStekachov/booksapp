@@ -32,8 +32,9 @@ class IndexController extends AbstractActionController
         //\Zend\Debug\Debug::dump($books, $label = null, $echo = true);
         //return new ViewModel(['book'=>$books]);
         //return new ViewModel();
-        $em=$this->container->get('Doctrine\ORM\EntityManager');
-        $books=$em->getRepository(Book::class)->findAll();
+        //$em=$this->container->get('Doctrine\ORM\EntityManager');
+        \Zend\Debug\Debug::dump($this->container, $label = null, $echo = true);
+        //$books=$em->getRepository(Book::class)->findAll();
         return new ViewModel(['books'=>$books]);
 
     }
