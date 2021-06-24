@@ -22,8 +22,8 @@ return [
             'orm_default' => [
                 'driverClass' => MySqlDriver::class,
                 'params' => [
-                    'host'     => '127.0.0.1',                    
-                    'user'     => 'mistek',
+                    'host'     => 'localhost',                    
+                    'user'     => 'book',
                     'password' => '123456',
                     'dbname'   => 'books',
                 ]

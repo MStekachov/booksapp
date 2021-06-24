@@ -31,7 +31,7 @@ return [
                 'driverClass' => \Doctrine\DBAL\Driver\PDOMySql\Driver::class,
                 'params' => [
                     'host'     => 'localhost',                    
-                    'user'     => 'books',
+                    'user'     => 'book',
                     'password' => '123456',
                     'dbname'   => 'books',
                 ]
