@@ -9,7 +9,7 @@ namespace Catalog;
 use Zend\Router\Http\Literal;
 use Zend\Router\Http\Segment;
 use Zend\ServiceManager\Factory\InvokableFactory;
-use Doctrine\DBAL\Driver\PDOMySql\Driver;// as PDOMySqlDriver;
+//use Doctrine\DBAL\Driver\PDOMySql\Driver;// as PDOMySqlDriver;
 use Doctrine\ORM\Mapping\Driver\AnnotationDriver;
 
 return [
@@ -28,12 +28,12 @@ return [
         ],
         'connection' => [
             'orm_default' => [
-                'driverClass' => Driver::class,
+                'driverClass' => \Doctrine\DBAL\Driver\PDOMySql\Driver::class,
                 'params' => [
-                    'host'     => '127.0.0.1',                    
+                    'host'     => 'localhost',                    
                     'user'     => 'books',
                     'password' => '123456',
-                    'dbname'   => 'booksShop',
+                    'dbname'   => 'books',
                 ]
             ],            
         ],        

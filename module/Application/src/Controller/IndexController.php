@@ -13,6 +13,13 @@ use Doctrine\ORM\Mapping\ClassMetadata;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 
+use Doctrine\DBAL\Driver\PDOMySql\Driver;
+
+use Doctrine\ORM\EntityManager;
+//use Doctrine\DBAL\Driver\PDO;
+//use Doctrine\DBAL\Driver\PDO\Statement as PDODriverStatement;
+
+
 class IndexController extends AbstractActionController
 {
 
@@ -25,6 +32,7 @@ class IndexController extends AbstractActionController
 
     public function indexAction()
     { 
+        $entityManager = $container->get('doctrine.entitymanager.orm_default'); 
         //$em=$this->container->get('Doctrine\ORM\EntityManager');
         //\Zend\Debug\Debug::dump($this->container, $label = null, $echo = true);
         //$books=$em->getRepository(Book::class)->findAll();
@@ -33,7 +41,8 @@ class IndexController extends AbstractActionController
         //return new ViewModel(['book'=>$books]);
         //return new ViewModel();
         //$em=$this->container->get('Doctrine\ORM\EntityManager');
-        \Zend\Debug\Debug::dump($this->container, $label = null, $echo = true);
+        \Zend\Debug\Debug::dump(Driver::class, $label = null, $echo = true);
+        //\Zend\Debug\Debug::dump($this->container, $label = null, $echo = true);
         //$books=$em->getRepository(Book::class)->findAll();
         return new ViewModel(['books'=>$books]);
 

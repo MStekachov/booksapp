@@ -22,13 +22,21 @@ return [
             'orm_default' => [
                 'driverClass' => PDOMySqlDriver::class,
                 'params' => [
-                    'host'     => '127.0.0.1',                    
-                    'user'     => 'mistek',
+                    'host'     => 'localhost',                    
+                    'user'     => 'books',
                     'password' => '123456',
                     'dbname'   => 'books',
                 ]
             ],            
         ],        
+    ],
+    'migrations_configuration' => [
+        'orm_default' => [
+            'directory' => 'data/Migrations',
+            'name'      => 'Doctrine Database Migrations',
+            'namespace' => 'Migrations',
+            'table'     => 'migrations',
+        ],
     ],
     'view_manager' => [
         'display_exceptions' => true,
