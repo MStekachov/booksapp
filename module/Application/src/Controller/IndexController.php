@@ -23,30 +23,18 @@ use Doctrine\ORM\EntityManager;
 class IndexController extends AbstractActionController
 {
 
-    /**
-     * Менеджер сущностей.
-     * @var Doctrine\ORM\EntityManager
-     */
-    private $entityManager;
-  
-    // Метод конструктора, используемый для внедрения зависимостей в контроллер.
-    public function __construct($entityManager) 
+    protected $container;
+
+    public function __construct($container = null)
     {
-        $this->entityManager = $entityManager;
+        $this->container = $container;
     }
 
     public function indexAction()
-    { 
-        // Получаем недавние посты.
-        $posts = $this->entityManager->getRepository(Post::class)
-                     ->findBy(['status'=>Post::STATUS_PUBLISHED], 
-                              ['dateCreated'=>'DESC']);
-        
-        // Визуализируем шаблон представления.
-        return new ViewModel([
-            'posts' => $posts
-        ]);
-
+    {
+        $em=$this->container->get('Doctrine\ORM\EntityManager');
+        $books=$em->getRepository(Book::class)->findAll();
+        return new ViewModel(['books'=>$books]);
     }
 
     public function catalogAction()
