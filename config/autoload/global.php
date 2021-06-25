@@ -18,6 +18,14 @@ use Doctrine\DBAL\Driver\PDOMySql\Driver as PDOMySqlDriver;
 
 return [
     'doctrine' => [
+        'migrations_configuration' => [
+            'orm_default' => [
+                'directory' => 'data/Migrations',
+                'name'      => 'Doctrine Database Migrations',
+                'namespace' => 'Migrations',
+                'table'     => 'migrations',
+            ],
+        ],
         'connection' => [
             'orm_default' => [
                 'driverClass' => PDOMySqlDriver::class,
@@ -26,17 +34,10 @@ return [
                     'user'     => 'book',
                     'password' => '123456',
                     'dbname'   => 'books',
+                    'port'     => '49166'
                 ]
             ],            
         ],        
-    ],
-    'migrations_configuration' => [
-        'orm_default' => [
-            'directory' => 'data/Migrations',
-            'name'      => 'Doctrine Database Migrations',
-            'namespace' => 'Migrations',
-            'table'     => 'migrations',
-        ],
     ],
     'view_manager' => [
         'display_exceptions' => true,

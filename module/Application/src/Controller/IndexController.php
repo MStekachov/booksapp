@@ -23,6 +23,15 @@ use Doctrine\ORM\EntityManager;
 class IndexController extends AbstractActionController
 {
 
+    /**
+     * @var
+     */
+    private $entityManager;
+    /**
+     * @var NativeQueryRepository
+     */
+    private $nativeRepository;
+
     protected $container;
 
     public function __construct($container = null)
@@ -32,18 +41,8 @@ class IndexController extends AbstractActionController
 
     public function indexAction()
     { 
-        $entityManager = $container->get('doctrine.entitymanager.orm_default'); 
-        //$em=$this->container->get('Doctrine\ORM\EntityManager');
-        //\Zend\Debug\Debug::dump($this->container, $label = null, $echo = true);
-        //$books=$em->getRepository(Book::class)->findAll();
-        //$this->layout()->setTemplate('layout/layout2');
-        //\Zend\Debug\Debug::dump($books, $label = null, $echo = true);
-        //return new ViewModel(['book'=>$books]);
-        //return new ViewModel();
-        //$em=$this->container->get('Doctrine\ORM\EntityManager');
-        \Zend\Debug\Debug::dump(Driver::class, $label = null, $echo = true);
-        //\Zend\Debug\Debug::dump($this->container, $label = null, $echo = true);
-        //$books=$em->getRepository(Book::class)->findAll();
+        $em=$this->container->get('Doctrine\ORM\EntityManager');
+        $books=$em->getRepository(Books::class)->findAll();
         return new ViewModel(['books'=>$books]);
 
     }
