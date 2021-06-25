@@ -93,7 +93,7 @@ return [
                 'class' => \Doctrine\ORM\Mapping\Driver\AnnotationDriver::class,
                 'cache' => 'array',
                 'paths' => [
-                    __DIR__ . '/../Entity',
+                    '/../Entity',
                     ///'another/path',
                 ],
             ],
