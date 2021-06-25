@@ -1,3 +1,7 @@
+<?php
+namespace Application\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
 // Создаем новую сущность Post.
 $post = new Post();
 $post->setTitle('Top 10+ Books about Zend Framework 3');
