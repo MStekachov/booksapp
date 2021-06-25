@@ -10,24 +10,8 @@ namespace Application;
 use Zend\Router\Http\Literal;
 use Zend\Router\Http\Segment;
 use Zend\ServiceManager\Factory\InvokableFactory;
-//use Doctrine\DBAL\Driver\PDOMySql\Driver;// as PDOMySqlDriver;
-use Doctrine\ORM\Mapping\Driver\AnnotationDriver;
 
 return [
-    'doctrine' => [
-        'driver' => [
-            __NAMESPACE__ . '_driver' => [
-                'class' => AnnotationDriver::class,
-                'cache' => 'array',
-                'paths' => [__DIR__ . '/../Entity']
-            ],
-            'orm_default' => [
-                'drivers' => [
-                    __NAMESPACE__ . '\Entity' => __NAMESPACE__ . '_driver'
-                ]
-            ]
-        ]
-    ],
     'router' => [
         'routes' => [
             'home' => [
@@ -40,7 +24,7 @@ return [
                     ],
                 ],
             ],
-            'catalog' => [
+            /*'catalog' => [
                 'type'    => Segment::class,
                 'options' => [
                     'route'    => '/catalog',
@@ -49,14 +33,14 @@ return [
                         'action'     => 'catalog',
                     ],
                 ],
-            ],
+            ],*/
             'application' => [
                 'type'    => Segment::class,
                 'options' => [
                     'route'    => '/application[/:action]',
                     'defaults' => [
                         'controller' => Controller\IndexController::class,
-                        'action'     => 'apple',
+                        'action'     => 'index',
                     ],
                 ],
             ],
@@ -93,7 +77,7 @@ return [
                 'class' => \Doctrine\ORM\Mapping\Driver\AnnotationDriver::class,
                 'cache' => 'array',
                 'paths' => [
-                    '/../Entity',
+                    'module/Application/Entity',
                     ///'another/path',
                 ],
             ],

@@ -33,8 +33,7 @@ return [
                     'host'     => 'localhost',                    
                     'user'     => 'book',
                     'password' => '123456',
-                    'dbname'   => 'books',
-                    'port'     => '49166'
+                    'dbname'   => 'books'
                 ]
             ],            
         ],        
