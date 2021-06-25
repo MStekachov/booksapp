@@ -24,26 +24,28 @@ class IndexController extends AbstractActionController
 {
 
     /**
-     * @var
+     * Менеджер сущностей.
+     * @var Doctrine\ORM\EntityManager
      */
     private $entityManager;
-    /**
-     * @var NativeQueryRepository
-     */
-    private $nativeRepository;
-
-    protected $container;
-
-    public function __construct($container = null)
+  
+    // Метод конструктора, используемый для внедрения зависимостей в контроллер.
+    public function __construct($entityManager) 
     {
-        $this->container = $container;
+        $this->entityManager = $entityManager;
     }
 
     public function indexAction()
     { 
-        $em=$this->container->get('Doctrine\ORM\EntityManager');
-        $books=$em->getRepository(Books::class)->findAll();
-        return new ViewModel(['books'=>$books]);
+        // Получаем недавние посты.
+        $posts = $this->entityManager->getRepository(Post::class)
+                     ->findBy(['status'=>Post::STATUS_PUBLISHED], 
+                              ['dateCreated'=>'DESC']);
+        
+        // Визуализируем шаблон представления.
+        return new ViewModel([
+            'posts' => $posts
+        ]);
 
     }
 
