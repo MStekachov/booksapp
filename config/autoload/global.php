@@ -20,10 +20,11 @@ return [
     'doctrine' => [
         'migrations_configuration' => [
             'orm_default' => [
+                /*'migalias'  => 'mig',*/
                 'directory' => 'data/Migrations',
                 'name'      => 'Doctrine Database Migrations',
                 'namespace' => 'Migrations',
-                'table'     => 'migrations',
+                'table'     => 'migrations'
             ],
         ],
         'connection' => [

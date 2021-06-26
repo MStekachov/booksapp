@@ -25,24 +25,32 @@ class IndexController extends AbstractActionController
 
     protected $container;
 
-    public function __construct($container = null)
+    public function __construct($container)
     {
         $this->container = $container;
     }
 
     public function indexAction()
     {
-        echo "Жопа\n";
-        Zend\Debug\Debug::dump($this->container, $label = null, $echo = true);
+        /*echo "Жопа\n";
+        $configuration   = $this->container->get('ApplicationConfig');
+        \Zend\Debug\Debug::dump($configuration, $label = null, $echo = true);*/
+        $entityManager = $this->container->get('doctrine.entitymanager.orm_default'); 
+        //\Zend\Debug\Debug::dump($entityManager, $label = null, $echo = true);
+        $book = $entityManager->getRepository(Book::class)->findAll();;
+        \Zend\Debug\Debug::dump($book, $label = null, $echo = true);
         $em=$this->container->get('Doctrine\ORM\EntityManager');
-        Zend\Debug\Debug::dump($em, $label = null, $echo = true);
+        //\Zend\Debug\Debug::dump($em, $label = null, $echo = true);
         $books=$em->getRepository(Book::class)->findAll();
+        \Zend\Debug\Debug::dump($books, $label = null, $echo = true);
         return new ViewModel(['books'=>$books]);
     }
 
     public function catalogAction()
     {
         echo "dfdsf";
+        $configuration   = $container->get('ApplicationConfig');
+        \Zend\Debug\Debug::dump($configuration, $label = null, $echo = true);
         $em=$this->container->get('Doctrine\ORM\EntityManager');
         $books=$em->getRepository(Book::class)->findAll();
         $this->layout()->setTemplate('layout/layout2');
