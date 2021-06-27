@@ -48,9 +48,8 @@ return [
     ],
     'controllers' => [
         'factories' => [
-            Controller\IndexController::class => function($container){
-                return new Controller\IndexController($container);
-            },
+            Controller\IndexController::class => 
+                Controller\Factory\IndexControllerFactory::class,
         ],
     ],
     'view_manager' => [

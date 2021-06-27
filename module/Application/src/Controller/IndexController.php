@@ -7,6 +7,7 @@
  */
 namespace Application\Controller;
 
+use Application\Controller\Factory\IndexControllerFactory;
 use Application\Entity\Book;
 use Application\Entity\Repository\DoctrineQueryRepository;
 use Doctrine\ORM\Mapping\ClassMetadata;
@@ -32,29 +33,29 @@ class IndexController extends AbstractActionController
 
     public function indexAction()
     {
-        /*echo "Жопа\n";
-        $configuration   = $this->container->get('ApplicationConfig');
-        \Zend\Debug\Debug::dump($configuration, $label = null, $echo = true);*/
-        $entityManager = $this->container->get('doctrine.entitymanager.orm_default'); 
-        //\Zend\Debug\Debug::dump($entityManager, $label = null, $echo = true);
-        $book = $entityManager->getRepository(Book::class)->findAll();;
-        \Zend\Debug\Debug::dump($book, $label = null, $echo = true);
-        $em=$this->container->get('Doctrine\ORM\EntityManager');
-        //\Zend\Debug\Debug::dump($em, $label = null, $echo = true);
-        $books=$em->getRepository(Book::class)->findAll();
-        \Zend\Debug\Debug::dump($books, $label = null, $echo = true);
-        return new ViewModel(['books'=>$books]);
+        $posts = $this->container->getRepository(Book::class)->findBy(['status'=>Post::STATUS_PASSIVE], ['dateCreated'=>'DESC']);
+        
+        // Визуализируем шаблон представления.
+        return new ViewModel([
+            'posts' => $posts
+        ]);
     }
 
     public function catalogAction()
     {
-        echo "dfdsf";
-        $configuration   = $container->get('ApplicationConfig');
-        \Zend\Debug\Debug::dump($configuration, $label = null, $echo = true);
-        $em=$this->container->get('Doctrine\ORM\EntityManager');
-        $books=$em->getRepository(Book::class)->findAll();
-        $this->layout()->setTemplate('layout/layout2');
-        \Zend\Debug\Debug::dump($books, $label = null, $echo = true);
-        return new ViewModel(['book'=>$books]);
+        echo "0000";
+        $post = new Book();
+        $post->setTitle('Юрий Поляков');
+        $post->setAnnotation('Любовь в эпоху перемен');
+        $post->setStatus(Post::STATUS_ACTIVE);
+        $currentDate = date('Y-m-d H:i:s');
+        $post->setDateCreated($currentDate);        
+        echo "1111";
+        // Добавляем сущность в менеджер сущностей.
+        $entityManager->persist($post);
+
+        // Применяем изменения к БД.
+        $entityManager->flush();
+        return new ViewModel();
     }
 }

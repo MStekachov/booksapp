@@ -18,15 +18,14 @@ use Doctrine\DBAL\Driver\PDOMySql\Driver as PDOMySqlDriver;
 
 return [
     'doctrine' => [
-        'migrations_configuration' => [
+        /*'migrations_configuration' => [
             'orm_default' => [
-                /*'migalias'  => 'mig',*/
                 'directory' => 'data/Migrations',
                 'name'      => 'Doctrine Database Migrations',
                 'namespace' => 'Migrations',
                 'table'     => 'migrations'
             ],
-        ],
+        ],*/
         'connection' => [
             'orm_default' => [
                 'driverClass' => PDOMySqlDriver::class,
