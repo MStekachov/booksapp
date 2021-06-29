@@ -9,7 +9,7 @@ namespace Application\Controller;
 
 use Application\Controller\Factory\IndexControllerFactory;
 use Application\Entity\Book;
-use Application\Entity\Repository\DoctrineQueryRepository;
+use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Mapping\ClassMetadata;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
@@ -29,16 +29,21 @@ class IndexController extends AbstractActionController
     public function __construct($container)
     {
         $this->container = $container;
+        //$this->container->persist(Book::class);
     }
 
     public function indexAction()
     {
-        $posts = $this->container->getRepository(Book::class)->findBy(['status'=>Post::STATUS_PASSIVE], ['dateCreated'=>'DESC']);
+        echo __DIR__;
+        $books = $this->container->getRepository(Book::class)->findAll();
+        //var_dump($this->container);
+       /* $posts = $this->container->getRepository(Book::class)->findBy(['status'=>Book::STATUS_PASSIVE], ['dateCreated'=>'DESC']);
         
         // Визуализируем шаблон представления.
         return new ViewModel([
             'posts' => $posts
-        ]);
+        ]);*/
+        return new ViewModel();
     }
 
     public function catalogAction()

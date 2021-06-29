@@ -40,7 +40,7 @@ return [
                     'route'    => '/application[/:action]',
                     'defaults' => [
                         'controller' => Controller\IndexController::class,
-                        'action'     => 'index',
+                        'action'     => 'catalog',
                     ],
                 ],
             ],
@@ -48,8 +48,7 @@ return [
     ],
     'controllers' => [
         'factories' => [
-            Controller\IndexController::class => 
-                Controller\Factory\IndexControllerFactory::class,
+            Controller\IndexController::class => Controller\Factory\IndexControllerFactory::class,
         ],
     ],
     'view_manager' => [
@@ -59,11 +58,12 @@ return [
         'not_found_template'       => 'error/404',
         'exception_template'       => 'error/index',
         'template_map' => [
-            'layout/layout'           => __DIR__ . '/../view/layout/layout.phtml',
-            'layout/layout2'          => __DIR__ . '/../view/layout/layout2.phtml',
-            'application/index/index' => __DIR__ . '/../view/application/index/index.twig',
-            'error/404'               => __DIR__ . '/../view/error/404.phtml',
-            'error/index'             => __DIR__ . '/../view/error/index.phtml',
+            'layout/layout'             => __DIR__ . '/../view/layout/layout.phtml',
+            'layout/layout2'            => __DIR__ . '/../view/layout/layout2.phtml',
+            'application/index/index'   => __DIR__ . '/../view/application/index/index.twig',
+            'application/index/catalog' => __DIR__ . '/../view/application/index/catalog.twig',
+            'error/404'                 => __DIR__ . '/../view/error/404.phtml',
+            'error/index'               => __DIR__ . '/../view/error/index.phtml',
         ],
         'template_path_stack' => [
             __DIR__ . '/../view',
@@ -71,24 +71,16 @@ return [
     ],
     'doctrine' => [
         'driver' => [
-            // defines an annotation driver with two paths, and names it `my_annotation_driver`
-            'my_annotation_driver' => [
-                'class' => \Doctrine\ORM\Mapping\Driver\AnnotationDriver::class,
+            __NAMESPACE__ . '_driver' => [
+                'class' => AnnotationDriver::class,
                 'cache' => 'array',
-                'paths' => [
-                    'module/Application/Entity',
-                    ///'another/path',
-                ],
+                'paths' => [__DIR__ . '/../Entity']
             ],
-
-            // default metadata driver, aggregates all other drivers into a single one.
-            // Override `orm_default` only if you know what you're doing
             'orm_default' => [
                 'drivers' => [
-                    // register `my_annotation_driver` for any entity under namespace `My\Namespace`
-                    'Entities' => 'my_annotation_driver',
-                ],
-            ],
-        ],
+                    __NAMESPACE__ . '\Entity' => __NAMESPACE__ . '_driver'
+                ]
+            ]
+        ]
     ],
 ];
