@@ -34,11 +34,10 @@ class IndexController extends AbstractActionController
 
     public function indexAction()
     {
-        $books = $this->container->getRepository(Book::class)->findAll();
+        //$books = $this->container->getRepository(Book::class)->findAll();
         //var_dump($this->container);
-       $posts = $this->container->getRepository(Book::class)->findBy(['status'=>Book::STATUS_PASSIVE], ['dateCreated'=>'DESC']);
-        
-        // Визуализируем шаблон представления.
+       $posts = $this->container->getRepository(Book::class);//->findBy(['status'=>Book::STATUS_PASSIVE], ['dateCreated'=>'DESC']);
+       //var_dump($posts);
         return new ViewModel([
             'posts' => $posts
         ]);
