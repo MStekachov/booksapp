@@ -15,19 +15,23 @@ class Book
     const STATUS_PASSIVE      = 2; // Книга отсутствует.
 
     /**
+     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(name="id")   
+     * @ORM\GeneratedValue(strategy="IDENTITY")   
      */
     protected $id;
 
-    /** 
-     * @ORM\Column(name="title")  
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="title", type="string", length=255, nullable=true)
      */
     protected $title;
 
     /** 
-     * @ORM\Column(name="annotation")  
+     * @var string|null
+     *
+     * @ORM\Column(name="annotation", type="text", length=65535, nullable=true)  
      */
     protected $annotation;
 

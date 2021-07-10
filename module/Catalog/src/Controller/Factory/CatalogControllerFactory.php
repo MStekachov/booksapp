@@ -14,9 +14,6 @@ class CatalogControllerFactory implements FactoryInterface
 {
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
-        $entityManager = $container->get('doctrine.entitymanager.orm_default');
-        //Zend\Debug\Debug::dump($entityManager, $label = null, $echo = true);
-        // Инстанцируем контроллер и внедряем зависимости.
-        return new CatalogController($entityManager);
+        return new IndexController($container->get('Doctrine\ORM\EntityManager'));
     }
 }
