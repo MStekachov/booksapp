@@ -10,6 +10,7 @@ namespace Application;
 use Zend\Router\Http\Literal;
 use Zend\Router\Http\Segment;
 use Zend\ServiceManager\Factory\InvokableFactory;
+use Doctrine\ORM\Mapping\Driver\AnnotationDriver;
 
 return [
     'router' => [
@@ -24,23 +25,13 @@ return [
                     ],
                 ],
             ],
-            /*'catalog' => [
-                'type'    => Segment::class,
-                'options' => [
-                    'route'    => '/catalog',
-                    'defaults' => [
-                        'controller' => Controller\IndexController::class,
-                        'action'     => 'catalog',
-                    ],
-                ],
-            ],*/
             'application' => [
                 'type'    => Segment::class,
                 'options' => [
                     'route'    => '/application[/:action]',
                     'defaults' => [
                         'controller' => Controller\IndexController::class,
-                        'action'     => 'catalog',
+                        'action'     => 'post',
                     ],
                 ],
             ],
@@ -61,7 +52,7 @@ return [
             'layout/layout'             => __DIR__ . '/../view/layout/layout.phtml',
             'layout/layout2'            => __DIR__ . '/../view/layout/layout2.phtml',
             'application/index/index'   => __DIR__ . '/../view/application/index/index.twig',
-            'application/index/catalog' => __DIR__ . '/../view/application/index/catalog.twig',
+            //'application/index/catalog' => __DIR__ . '/../view/application/index/catalog.twig',
             'error/404'                 => __DIR__ . '/../view/error/404.phtml',
             'error/index'               => __DIR__ . '/../view/error/index.phtml',
         ],

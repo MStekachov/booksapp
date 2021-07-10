@@ -34,33 +34,14 @@ class IndexController extends AbstractActionController
 
     public function indexAction()
     {
-        echo __DIR__;
         $books = $this->container->getRepository(Book::class)->findAll();
         //var_dump($this->container);
-       /* $posts = $this->container->getRepository(Book::class)->findBy(['status'=>Book::STATUS_PASSIVE], ['dateCreated'=>'DESC']);
+       $posts = $this->container->getRepository(Book::class)->findBy(['status'=>Book::STATUS_PASSIVE], ['dateCreated'=>'DESC']);
         
         // Визуализируем шаблон представления.
         return new ViewModel([
             'posts' => $posts
-        ]);*/
-        return new ViewModel();
-    }
-
-    public function catalogAction()
-    {
-        echo "0000";
-        $post = new Book();
-        $post->setTitle('Юрий Поляков');
-        $post->setAnnotation('Любовь в эпоху перемен');
-        $post->setStatus(Post::STATUS_ACTIVE);
-        $currentDate = date('Y-m-d H:i:s');
-        $post->setDateCreated($currentDate);        
-        echo "1111";
-        // Добавляем сущность в менеджер сущностей.
-        $entityManager->persist($post);
-
-        // Применяем изменения к БД.
-        $entityManager->flush();
-        return new ViewModel();
+        ]);
+        //return new ViewModel();
     }
 }

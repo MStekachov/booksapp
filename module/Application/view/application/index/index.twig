@@ -1,5 +1,5 @@
-{% for i in range(0, 3) %}
-    {{ i }},
+{% for post in posts %}
+    {{ post.id }},
 {% endfor %}
 <div class="jumbotron">
     <h1>Welcome to <span class="zf-green">Zend Framework</span></h1>

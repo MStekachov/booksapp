@@ -12,11 +12,11 @@ use Doctrine\ORM\EntityRepository;
  */
 class IndexControllerFactory implements FactoryInterface
 {
-    public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
+    public function __invoke(ContainerInterface $container, $requestedNcontainerame, array $options = null)
     {
-        $entityManager = $container->get('doctrine.entitymanager.orm_default');
-        Zend\Debug\Debug::dump($entityManager, $label = null, $echo = true);
-        // Инстанцируем контроллер и внедряем зависимости.
-        return new IndexController($entityManager);
+        /*$entityManager = $container->get(EntityManager::class);
+        $repository = $entityManager->getRepository(Book::class);
+        return new IndexController($entityManager);*/
+        return new IndexController($container->get('Doctrine\ORM\EntityManager'));
     }
 }
