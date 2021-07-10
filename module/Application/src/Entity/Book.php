@@ -31,7 +31,7 @@ class Book
     /** 
      * @var string|null
      *
-     * @ORM\Column(name="annotation", type="text", length=65535, nullable=true)  
+     * @ORM\Column(name="annotation", type="string", length=1250, nullable=true)  
      */
     protected $annotation;
 
@@ -69,6 +69,18 @@ class Book
         $this->title = $title;
     }
 
+    // Возвращает аннотацию.
+    public function getAnnotation() 
+    {
+        return $this->annotation;
+    }
+
+    // Задает аннотацию.
+    public function setAnnotation($annotation) 
+    {
+        $this->annotation = $annotation;
+    }
+
     // Возвращает статус.
     public function getStatus() 
     {
@@ -81,19 +93,7 @@ class Book
         $this->status = $status;
     }
     
-    // Возвращает аннотацию.
-    public function getContent() 
-    {
-        return $this->content; 
-    }
-    
-    // Задает аннотацию.
-    public function setContent($content) 
-    {
-        $this->content = $content;
-    }
-    
-    // Возвращает дату занесения данной книги в твблицу.
+    // Возвращает дату занесения данной книги в таблицу.
     public function getDateCreated() 
     {
         return $this->dateCreated;

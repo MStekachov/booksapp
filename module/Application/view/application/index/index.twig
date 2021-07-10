@@ -1,9 +1,15 @@
+<div class="container-fluid">
 {% for book in books %}
-    {{ book.getTitle }}<br />
+    <div class="row">
+        <div class="col-1">{{ book.getId }}</div>
+        <div class="col-4">{{ book.getTitle }}</div>
+        <div class="col-5">{{ book.getAnnotation }}</div>
+        <div class="col-2">{{ book.getDateCreated }}</div>
+    </div>
 {% endfor %}
+</div>
 <div class="jumbotron">
-    <h1>Welcome to <span class="zf-green">Zend Framework</span></h1>
-
+    <h1>Интернет-магазин книг и печатной продукции <span class="zf-green">Biblio Art</span></h1>
     <p>
         Congratulations! You have successfully installed the
         <a href="https://github.com/zendframework/ZendSkeletonApplication" target="_blank">ZF Skeleton Application</a>.
