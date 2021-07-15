@@ -1,25 +1,14 @@
-<div class="container-fluid">
-{% for book in books %}
-    <div class="row">
-        <div class="col-1">{{ book.getId }}</div>
-        <div class="col-4">{{ book.getTitle }}</div>
-        <div class="col-5">{{ book.getAnnotation }}</div>
-        <div class="col-2">{{ book.getDateCreated }}</div>
-    </div>
-{% endfor %}
-</div>
+<h1>Интернет-магазин книг и печатной продукции <span class="zf-green">Biblio Art</span></h1>
+<p>{{ app.request.uri }}</p>
 <div class="jumbotron">
-    <h1>Интернет-магазин книг и печатной продукции <span class="zf-green">Biblio Art</span></h1>
-    <p>
-        Congratulations! You have successfully installed the
-        <a href="https://github.com/zendframework/ZendSkeletonApplication" target="_blank">ZF Skeleton Application</a>.
-        You are currently running Zend Framework version <?= \Application\Module::VERSION ?>.
-        This skeleton can serve as a simple starting point for you to begin
-        building your application on ZF.
-    </p>
-
-    <p><a class="btn btn-success btn-lg" href="https://github.com/zendframework/zendframework" target="_blank">Fork Zend Framework on GitHub &raquo;</a></p>
-</div>
-
-<div class="row">
+    <div class="container-fluid">
+    {% for book in books %}
+        <div class="row catalog" data-book-id={{ book.getId }}>
+            <div class="col-1">{{ book.getId }}</div>
+            <div class="col-4">{{ book.getTitle }}</div>
+            <div class="col-5">{{ book.getAnnotation }}</div>
+            <div class="col-2">{{ book.getDateCreated }}</div>
+        </div>
+    {% endfor %}
+    </div>
 </div>

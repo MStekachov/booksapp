@@ -36,4 +36,13 @@ class IndexController extends AbstractActionController
         $books = $this->container->getRepository(Book::class)->findAll();
         return new ViewModel(['books' => $books]);
     }
+
+    public function viewAction()
+    {
+        //return new ViewModel();
+        //var_dump($this);
+        $viewModel = new ViewModel();
+        $viewModel->id = $this->params()->fromQuery('id', '1');
+        return $viewModel;
+    }
 }

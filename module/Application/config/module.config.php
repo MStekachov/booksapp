@@ -25,6 +25,19 @@ return [
                     ],
                 ],
             ],
+            'view' => [
+                'type' => Segment::class,
+                'options' => [
+                    'route' => '/view[/:id]',
+                    'constraints' => [     
+                        'id' => '[0-9]*?'
+                    ],
+                    'defaults' => [
+                        'controller' => Controller\IndexController::class,
+                        'action' => 'view',
+                    ],
+                ],
+            ],
             'application' => [
                 'type'    => Segment::class,
                 'options' => [
@@ -52,7 +65,7 @@ return [
             'layout/layout'             => __DIR__ . '/../view/layout/layout.phtml',
             'layout/layout2'            => __DIR__ . '/../view/layout/layout2.phtml',
             'application/index/index'   => __DIR__ . '/../view/application/index/index.twig',
-            //'application/index/catalog' => __DIR__ . '/../view/application/index/catalog.twig',
+            'application/index/view'    => __DIR__ . '/../view/application/index/view.twig',
             'error/404'                 => __DIR__ . '/../view/error/404.phtml',
             'error/index'               => __DIR__ . '/../view/error/index.phtml',
         ],
