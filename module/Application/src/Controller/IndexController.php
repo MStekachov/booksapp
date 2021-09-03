@@ -13,9 +13,7 @@ use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Mapping\ClassMetadata;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
-
 use Doctrine\DBAL\Driver\PDOMySql\Driver;
-
 use Doctrine\ORM\EntityManager;
 //use Doctrine\DBAL\Driver\PDO;
 //use Doctrine\DBAL\Driver\PDO\Statement as PDODriverStatement;
@@ -39,10 +37,11 @@ class IndexController extends AbstractActionController
 
     public function viewAction()
     {
-        //return new ViewModel();
-        //var_dump($this);
-        $viewModel = new ViewModel();
-        $viewModel->id = $this->params()->fromQuery('id', '1');
-        return $viewModel;
+        try {
+            $book = $this->container->getRepository(Book::class)->findById($this->params()->fromRoute('id'));
+            return new ViewModel(['book' => $book[0]]);
+        } catch(Throwable $t) {
+            $t->getMessage();
+        }
     }
 }

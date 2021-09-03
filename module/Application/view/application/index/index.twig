@@ -1,13 +1,17 @@
 <h1>Интернет-магазин книг и печатной продукции <span class="zf-green">Biblio Art</span></h1>
-<p>{{ app.request.uri }}</p>
+<p><a href="{{ url }}">Вид</a></p>
 <div class="jumbotron">
     <div class="container-fluid">
     {% for book in books %}
         <div class="row catalog" data-book-id={{ book.getId }}>
             <div class="col-1">{{ book.getId }}</div>
-            <div class="col-4">{{ book.getTitle }}</div>
-            <div class="col-5">{{ book.getAnnotation }}</div>
-            <div class="col-2">{{ book.getDateCreated }}</div>
+            <div class="col-3">{{ book.getTitle }}</div>
+            <div class="col-3">{{ book.getAnnotation }}</div>
+            <div class="col-5">
+                <button type="button" class="btn btn-info"><a href="/view/{book.getId}">Смотреть</a></button>
+                <button type="button" class="btn btn-warning"><a href="/edit/{book.getId}">Редактировать</a></button>
+                <button type="button" class="btn btn-danger"><a href="/delete/{book.getId}">Удалить</a></button>
+            </div>
         </div>
     {% endfor %}
     </div>
