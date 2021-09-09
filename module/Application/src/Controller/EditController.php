@@ -15,11 +15,9 @@ use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 use Doctrine\DBAL\Driver\PDOMySql\Driver;
 use Doctrine\ORM\EntityManager;
-//use Doctrine\DBAL\Driver\PDO;
-//use Doctrine\DBAL\Driver\PDO\Statement as PDODriverStatement;
 
 
-class IndexController extends AbstractActionController
+class EditController extends AbstractActionController
 {
 
     protected $container;
@@ -29,40 +27,13 @@ class IndexController extends AbstractActionController
         $this->container = $container;
     }
 
-    public function indexAction()
-    {
-        $books = $this->container->getRepository(Book::class)->findAll();
-        return new ViewModel(['books' => $books]);
-    }
-
-    public function viewAction()
-    {
-        try {
-            $book = $this->container->getRepository(Book::class)->findById($this->params()->fromRoute('id'));
-            return new ViewModel(['book' => $book[0]]);
-        } catch(Throwable $t) {
-            $t->getMessage();
-        }
-    }
-
     public function editAction()
     {
         try {
             $book = $this->container->getRepository(Book::class)->findById($this->params()->fromRoute('id'));
-            //dd($this->container);
             return new ViewModel(['book' => $book[0]]);
         } catch(Throwable $t) {
             $t->getMessage();
         }
-    }
-
-    public function addAction()
-    {
-
-    }
-
-    public function deleteAction()
-    {
-
     }
 }

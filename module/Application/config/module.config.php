@@ -38,6 +38,19 @@ return [
                     ],
                 ],
             ],
+            'edit' => [
+                'type' => Segment::class,
+                'options' => [
+                    'route' => '/edit[/:id]',
+                    'constraints' => [     
+                        'id' => '[0-9]*?'
+                    ],
+                    'defaults' => [
+                        'controller' => Controller\IndexController::class,
+                        'action' => 'edit',
+                    ],
+                ],
+            ],
             'application' => [
                 'type'    => Segment::class,
                 'options' => [
@@ -53,6 +66,7 @@ return [
     'controllers' => [
         'factories' => [
             Controller\IndexController::class => Controller\Factory\IndexControllerFactory::class,
+            //Controller\EditController::class  => Controller\Factory\EditControllerFactory::class,
         ],
     ],
     'view_manager' => [
@@ -66,6 +80,7 @@ return [
             'layout/layout2'            => __DIR__ . '/../view/layout/layout2.phtml',
             'application/index/index'   => __DIR__ . '/../view/application/index/index.twig',
             'application/index/view'    => __DIR__ . '/../view/application/index/view.twig',
+            'application/index/edit'    => __DIR__ . '/../view/application/index/edit.twig',
             'error/404'                 => __DIR__ . '/../view/error/404.phtml',
             'error/index'               => __DIR__ . '/../view/error/index.phtml',
         ],
